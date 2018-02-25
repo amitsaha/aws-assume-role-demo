@@ -59,6 +59,8 @@ digraph {
 From https://aws.amazon.com/amazon-linux-ami/
 ami-3248a350
 
+HVM EBS based for t2.micro: ami-ff4ea59d
+
 **Create Key Pair by importing an existing key**
 
 ```
@@ -75,4 +77,8 @@ $ AWS_PROFILE=dev aws ec2 describe-key-pairs
 }
 
 ```
+
+**Create default VPC**
+
+http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/default-vpc.html
 
