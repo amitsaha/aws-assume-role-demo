@@ -82,3 +82,48 @@ $ AWS_PROFILE=dev aws ec2 describe-key-pairs
 
 http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/default-vpc.html
 
+```
+[ec2-user@ip-172-31-6-239 ~]$ aws s3 ls s3://github-amitsaha-bucket/*
+
+An error occurred (AccessDenied) when calling the ListObjects operation: Access Denied
+[ec2-user@ip-172-31-6-239 ~]$ aws s3 ls s3://github-amitsaha-bucket/
+
+An error occurred (AccessDenied) when calling the ListObjects operation: Access Denied
+[ec2-user@ip-172-31-6-239 ~]$ aws sts assume-role --role-arn arn:aws:iam::033145145979:role/test_profile2_role --role-session-name s3-example
+
+An error occurred (AccessDenied) when calling the AssumeRole operation: User: arn:aws:sts::033145145979:assumed-role/test_profile1_role/i-0b3f9c44566fbc260 is not authorized to perform: sts:AssumeRole on resource: arn:aws:iam::033145145979:role/test_profile2_role
+
+[ec2-user@ip-172-31-6-239 ~]$ aws sts assume-role --role-arn arn:aws:iam::033145145979:role/test_profile2_role --role-session-name s3-example
+{
+    "AssumedRoleUser": {
+        "AssumedRoleId": "AROAJ3CMHLQFMYPPWQLSQ:s3-example", 
+        "Arn": "arn:aws:sts::033145145979:assumed-role/test_profile2_role/s3-example"
+    }, 
+    "Credentials": {
+        "SecretAccessKey": "PzFA0bJxxeB+i4kWjowpM6VTQTQfIiejbRxXkZdo", 
+        "SessionToken": "FQoDYXdzEI7//////////wEaDDqRJAWz11tovnatwSLuAUf1CIjLW0OI5dTCAh610HW7f3fBxglofbntqxCSJVyei1DafEjriLIskDzKoCdz6Y7F5Z/uyv/Ue7dCCCvXFpVYExwt82hE7yTGrYJB/oQl+bkMIzPhlHyegDa3/+vxdFu2kbcve8a1VlNhZE8fnpaRLGMoEr9/Ll+NQLjtRyysQ7DuN0GuMVIDiUzqOZHVDFDt4/c5LBHd2VZNfZ2t/rfPTkIwfkI9JQUVON+lcrk5W+FH16Onp1vuZXX4cmraMWQ1ROGf2x4fHGPIcMqaw674sgOnMSllyCUONLIaSPOeJLfOSDIrM/Xfv0PvslgotNrK1AU=", 
+        "Expiration": "2018-02-25T13:33:56Z", 
+        "AccessKeyId": "ASIAI7JVCNUGFT6XGMAQ"
+    }
+}
+[ec2-user@ip-172-31-6-239 ~]$ date
+Sun Feb 25 12:34:03 UTC 2018
+[ec2-user@ip-172-31-6-239 ~]$ aws s3 ls s3://github-amitsaha-bucket/
+
+An error occurred (AccessDenied) when calling the ListObjects operation: Access Denied
+[ec2-user@ip-172-31-6-239 ~]$ AWS_ACCESS_KEY_ID=ASIAI7JVCNUGFT6XGMAQ AWS_SECRET_ACCESS_KEY=PzFA0bJxxeB+i4kWjowpM6VTQTQfIiejbRxXkZdo aws s3 ls s3://github-amitsaha-bucket/
+
+An error occurred (InvalidAccessKeyId) when calling the ListObjects operation: The AWS Access Key Id you provided does not exist in our records.
+[ec2-user@ip-172-31-6-239 ~]$ AWS_ACCESS_KEY_ID=ASIAI7JVCNUGFT6XGMAQ AWS_SECRET_ACCESS_KEY=PzFA0bJxxeB+i4kWjowpM6VTQTQfIiejbRxXkZdo aws s3 ls s3://github-amitsaha-bucket/
+
+An error occurred (InvalidAccessKeyId) when calling the ListObjects operation: The AWS Access Key Id you provided does not exist in our records.
+[ec2-user@ip-172-31-6-239 ~]$ AWS_SESSION_TOKEN="FQoDYXdzEI7//////////wEaDDqRJAWz11tovnatwSLuAUf1CIjLW0OI5dTCAh610HW7f3fBxglofbntqxCSJVyei1DafEjriLIskDzKoCdz6Y7F5Z/uyv/Ue7dCCCvXFpVYExwt82hE7yTGrYJB/oQl+bkMIzPhlHyegDa3/+vxdFu2kbcve8a1VlNhZE8fnpaRLGMoEr9/Ll+NQLjtRyysQ7DuN0GuMVIDiUzqOZHVDFDt4/c5LBHd2VZNfZ2t/rfPTkIwfkI9JQUVON+lcrk5W+FH16Onp1vuZXX4cmraMWQ1ROGf2x4fHGPIcMqaw674sgOnMSllyCUONLIaSPOeJLfOSDIrM/Xfv0PvslgotNrK1AU=" AWS_ACCESS_KEY_ID=ASIAI7JVCNUGFT6XGMAQ AWS_SECRET_ACCESS_KEY=PzFA0bJxxeB+i4kWjowpM6VTQTQfIiejbRxXkZdo aws s3 ls s3://github-amitsaha-bucket/
+[ec2-user@ip-172-31-6-239 ~]$ vim hello
+[ec2-user@ip-172-31-6-239 ~]$ AWS_SESSION_TOKEN="FQoDYXdzEI7//////////wEaDDqRJAWz11tovnatwSLuAUf1CIjLW0OI5dTCAh610HW7f3fBxglofbntqxCSJVyei1DafEjriLIskDzKoCdz6Y7F5Z/uyv/Ue7dCCCvXFpVYExwt82hE7yTGrYJB/oQl+bkMIzPhlHyegDa3/+vxdFu2kbcve8a1VlNhZE8fnpaRLGMoEr9/Ll+NQLjtRyysQ7DuN0GuMVIDiUzqOZHVDFDt4/c5LBHd2VZNfZ2t/rfPTkIwfkI9JQUVON+lcrk5W+FH16Onp1vuZXX4cmraMWQ1ROGf2x4fHGPIcMqaw674sgOnMSllyCUONLIaSPOeJLfOSDIrM/Xfv0PvslgotNrK1AU=" AWS_ACCESS_KEY_ID=ASIAI7JVCNUGFT6XGMAQ AWS_SECRET_ACCESS_KEY=PzFA0bJxxeB+i4kWjowpM6VTQTQfIiejbRxXkZdo aws s3 cp hello  s3://github-amitsaha-bucket/
+upload: ./hello to s3://github-amitsaha-bucket/hello             
+[ec2-user@ip-172-31-6-239 ~]$ AWS_SESSION_TOKEN="FQoDYXdzEI7//////////wEaDDqRJAWz11tovnatwSLuAUf1CIjLW0OI5dTCAh610HW7f3fBxglofbntqxCSJVyei1DafEjriLIskDzKoCdz6Y7F5Z/uyv/Ue7dCCCvXFpVYExwt82hE7yTGrYJB/oQl+bkMIzPhlHyegDa3/+vxdFu2kbcve8a1VlNhZE8fnpaRLGMoEr9/Ll+NQLjtRyysQ7DuN0GuMVIDiUzqOZHVDFDt4/c5LBHd2VZNfZ2t/rfPTkIwfkI9JQUVON+lcrk5W+FH16Onp1vuZXX4cmraMWQ1ROGf2x4fHGPIcMqaw674sgOnMSllyCUONLIaSPOeJLfOSDIrM/Xfv0PvslgotNrK1AU=" AWS_ACCESS_KEY_ID=ASIAI7JVCNUGFT6XGMAQ AWS_SECRET_ACCESS_KEY=PzFA0bJxxeB+i4kWjowpM6VTQTQfIiejbRxXkZdo aws s3 ls s3://github-amitsaha-bucket/
+2018-02-25 12:38:32         12 hello
+[ec2-user@ip-172-31-6-239 ~]$ 
+
+```
+
