@@ -5,9 +5,9 @@ Please see accompanying [blog post]() first.
 ## Terraform Configuration
 
 
-[Problem demo](./terraform_configuration/problem_demo)
-[Solution demo](./terraform_configuration/solution_demo)
-[Solution with AWS root user demo](./terraform_configuration/solution_demo_root_user)
+- [Problem demo](./terraform_configuration/problem_demo)
+- [Solution demo](./terraform_configuration/solution_demo)
+- [Solution with AWS root user demo](./terraform_configuration/solution_demo_root_user)
 
 
 For applying any of the changes above, you need to setup your AWS account, setup
