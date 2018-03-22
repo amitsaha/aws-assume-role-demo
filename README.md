@@ -1,6 +1,7 @@
 # Setting up AWS EC2 assume role with Terraform
 
-Please see accompanying [blog post](http://echorand.me/setting-up-aws-ec2-assume-role-with-terraform.html) first.
+Please see accompanying [blog post](http://echorand.me/setting-up-aws-ec2-assume-role-with-terraform.html) first. I did a talk
+at the [Sydney Infra Coders Meetup](https://www.meetup.com/en-AU/Infrastructure-Coders-Sydney/events/248492783/). The slides are [here](./AWS%20EC2%20Assume%20Role%20with%20Terraform.pdf).
 
 ## Terraform Configuration
 
